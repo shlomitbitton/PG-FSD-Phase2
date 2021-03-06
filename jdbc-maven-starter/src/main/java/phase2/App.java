@@ -117,7 +117,7 @@ void getAllRecords() {
 			}
 			}
 	
-			void deleteLearner(int id){
+			void deleteLearner(){
 	
 				qry="delete from learners where learnerId='4'";
 			
@@ -129,6 +129,21 @@ void getAllRecords() {
 					};
 				}catch(SQLException e){
 						System.out.println("Cannot delete entry: " + e.getMessage());
+				}
+			}
+
+			void updateLearner(){
+	
+				qry="update learners set learnerName='Shelly' where  learnerId='14'";
+			
+				try{
+					if(theStatement.executeUpdate(qry)>0){
+						System.out.println("Successfully updated learner...");
+					}else{
+						System.out.println("ID not found for update...");
+					};
+				}catch(SQLException e){
+						System.out.println("Cannot update entry: " + e.getMessage());
 				}
 			}
 			
@@ -176,9 +191,9 @@ void getAllRecords() {
 
 	// theScanner.close();
 
-		new App().deleteLearner(1);
+		new App().deleteLearner();
+		new App().updateLearner();
 		new App().getAllRecords();
-
 		new App().addNewLearner();
     	
     }
