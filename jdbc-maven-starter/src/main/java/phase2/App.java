@@ -26,7 +26,7 @@ public class App
     		String dbUserPassword = "oiccmmp135";
     		
 //    		Define the driver for the database
-    		String mySqlDriver = "com.mysql.jdbc.Driver";
+    		String mySqlDriver = "com.mysql.cj.jdbc.Driver";
     		
     		
 //        	Load the Driver
