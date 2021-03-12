@@ -96,8 +96,8 @@ public class MenuOperations {
     try {
       PreparedStatement pstmt = dbc.dbCon.prepareStatement(dbc.qry, ResultSet.TYPE_SCROLL_INSENSITIVE,
           ResultSet.CONCUR_UPDATABLE);
-          pstmt.setString(1, "learnerName");
-          pstmt.setString(1,"learnerAddress");
+          pstmt.setString(1, searchTerm);
+          pstmt.setString(2, searchTerm);
       // Execute the query
       ResultSet theResultSet = pstmt.executeQuery();
       // Learners learner = new Learners();
