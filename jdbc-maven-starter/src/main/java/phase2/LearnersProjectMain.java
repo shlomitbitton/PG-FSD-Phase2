@@ -34,11 +34,16 @@ public class LearnersProjectMain {
           mo.search(searchTerm);
           break;
         case "U":
-          System.out.println("Enter learner to update");  
-          int learnerId = s.nextInt();
-          s.nextLine();
-          String updatedLearnerName=s.nextLine();
-          mo.fetchAndUpdate(learnerId,updatedLearnerName);
+          System.out.println("Enter learner id to update");  
+          try{
+            int learnerId = s.nextInt();
+            s.nextLine();
+            System.out.println("Enter name to update");  
+            String updatedLearnerName=s.nextLine();
+            mo.fetchAndUpdate(learnerId,updatedLearnerName);
+          }catch(Exception e){
+            System.out.println("You have entered  wrong input "+e.getMessage());
+          }
           break;
         case "D":
           mo.list();

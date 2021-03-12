@@ -25,7 +25,7 @@ public class MenuOperations {
       while (theResultSet.next()) {
         if (theResultSet.getInt("learnerId") == learnerId) {
           // Update the current row
-          theResultSet.updateString("learnerName", theResultSet.getString("learnerName") + newLearnrName);
+          theResultSet.updateString("learnerName", newLearnrName);
           // Commit the changes
           theResultSet.updateRow();
 
@@ -43,15 +43,9 @@ public class MenuOperations {
     try {
       PreparedStatement pstmt = dbc.dbCon.prepareStatement(dbc.qry, ResultSet.TYPE_SCROLL_INSENSITIVE,
           ResultSet.CONCUR_UPDATABLE);
-      // Execute the query
-      ResultSet theResultSet = pstmt.executeQuery();
-      while (theResultSet.next()) {
-        if (theResultSet.getInt("learnerId") == learnerId) {
-
-          theResultSet.deleteRow();
-          System.out.println("Learner got deleted...");
-        }
-      }
+          pstmt.setInt(1, learnerId);
+        if (pstmt.executeUpdate() > 0)
+        System.out.println("Record deleted...");
     } catch (SQLException e) {
       System.out.println("Can't get a reference to the PreparedStatement : " + e.getMessage());
     }
@@ -102,12 +96,14 @@ public class MenuOperations {
     try {
       PreparedStatement pstmt = dbc.dbCon.prepareStatement(dbc.qry, ResultSet.TYPE_SCROLL_INSENSITIVE,
           ResultSet.CONCUR_UPDATABLE);
+          pstmt.setString(1, "learnerName");
+          pstmt.setString(1,"learnerAddress");
       // Execute the query
       ResultSet theResultSet = pstmt.executeQuery();
       // Learners learner = new Learners();
       // Traverse through the results
       if (theResultSet.getString("learnerName") == theResultSet.getString(1)
-          || theResultSet.getString("learnerAdress") == theResultSet.getString(2)) {
+          || theResultSet.getString("learnerAdress") == theResultSet.getString(1)) {
         System.out.print("Name : " + theResultSet.getString("learnerName"));
         System.out.println(", Address : " + theResultSet.getString("learnerAddress"));
       }
