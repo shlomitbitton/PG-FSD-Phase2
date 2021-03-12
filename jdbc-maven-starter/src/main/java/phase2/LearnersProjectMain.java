@@ -20,7 +20,9 @@ public class LearnersProjectMain {
           String learnerName = s.nextLine();
           System.out.println("Enter learner address");
           String learnerAddress = s.nextLine();
-          mo.add(learnerAddress, learnerName);
+          System.out.println("Enter learner last name");
+          String learnerLastName = s.nextLine();
+          mo.add(learnerAddress, learnerName, learnerLastName);
           break;
         case "L":
           System.out.println("Display all learners details");
@@ -46,7 +48,10 @@ public class LearnersProjectMain {
           mo.delete(learnerIdToDelete);
           break;
         case "Sort":
-          System.out.println("Would you like to sort by First name, Last name, Address or Id?"); 
+          System.out.println("Sort by 1. First name, 2. Last name, 3. Address or 4. Id?"); 
+          int sortingChoice = s.nextInt();
+          s.nextLine();
+          mo.sort(sortingChoice);
           break;
         case "exit":
           System.out.println("Goodbye!");
